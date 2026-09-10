@@ -1,0 +1,14 @@
+node_modules/
+remotion/node_modules/
+remotion/out/
+media/reference/*
+media/footage/*
+!media/reference/.gitkeep
+!media/footage/.gitkeep
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.wav
+*.mp3
+.DS_Store
