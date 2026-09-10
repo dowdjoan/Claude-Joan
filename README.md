@@ -18,6 +18,19 @@ referencia. Usa [Remotion](https://www.remotion.dev/) para el render final.
    y arma el video final, plano por plano, en el mismo orden y timing que la
    referencia.
 
+### Alternativa: editar "de oído" (sin video de referencia)
+
+Si lo que querés es simplemente que se saque el aire muerto de un video
+tuyo (silencios/pausas) y quede tu parte hablada de corrido — el clásico
+edit de podcast/talking-head — no hace falta ningún video de referencia:
+
+```bash
+python3 scripts/edit_from_speech.py media/footage/tu_video.mp4
+```
+
+Esto detecta las pausas con `ffmpeg` (sin descargar ningún modelo) y genera
+el mismo `EditPlan.json` que después renderiza Remotion.
+
 ## Uso
 
 ```bash
@@ -41,6 +54,8 @@ npm run dev
 
 # 7) Render final
 npx remotion render AutoEdit out/final.mp4
+# (si eso falla en tu entorno, usá el workaround del script:)
+./scripts/render.sh
 ```
 
 ## Requisitos
@@ -61,9 +76,16 @@ npx remotion render AutoEdit out/final.mp4
   de la referencia, sincronizar con la música, replicar transiciones/texto
   en pantalla), es el siguiente paso a construir una vez que tengamos
   ejemplos reales.
+- ✅ Render final probado de punta a punta con un video de referencia real
+  (47s, 43 cortes) y un clip crudo, produciendo `out/final_edit.mp4` con la
+  misma duración y ritmo que la referencia.
 - El render final (`npx remotion render`) requiere descargar Chrome Headless
   Shell la primera vez; en este entorno de nube esa descarga está bloqueada
-  por la política de red, así que el render de prueba se hizo apuntando a un
-  Chromium ya instalado en el sandbox. En tu máquina (o en un entorno con
-  salida a internet habilitada) `npx remotion render` debería funcionar sin
-  pasos extra.
+  por la política de red. Además, en este sandbox el bundling interno del
+  CLI (que corre en paralelo con el arranque del browser) a veces no
+  terminaba de escribir `bundle.js` a tiempo, causando un 404 al pedirlo.
+  `scripts/render.sh` evita ambos problemas: bundlea a una carpeta fija,
+  la sirve con un HTTP server simple, y renderiza apuntando a esa URL en
+  vez de dejar que el CLI bundlee y sirva todo internamente. En tu propia
+  máquina, con salida a internet normal, probablemente ni haga falta —
+  `npx remotion render` debería andar directo.
