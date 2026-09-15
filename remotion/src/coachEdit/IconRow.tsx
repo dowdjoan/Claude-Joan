@@ -1,8 +1,8 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { ICON_ROW } from "./timeline";
-import { COLORS, FONT_FAMILY_UI } from "./theme";
-import { RevealBox } from "./RevealBox";
+import { COLORS, FONT_FAMILY_UI } from "../shared/theme";
+import { RevealBox } from "../shared/RevealBox";
 
 const DumbbellIcon: React.FC = () => (
   <svg width="56" height="56" viewBox="0 0 56 56" fill="none">

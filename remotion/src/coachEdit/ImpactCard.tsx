@@ -8,8 +8,8 @@ import {
   GRADIENT_MAGENTA_VIOLET_BLUE,
   gradientText,
   glow,
-} from "./theme";
-import { RevealBox } from "./RevealBox";
+} from "../shared/theme";
+import { RevealBox } from "../shared/RevealBox";
 
 const CardBg: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <AbsoluteFill

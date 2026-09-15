@@ -1,6 +1,5 @@
 import React from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
-import { CAPTIONS, ACCENT_STINGERS, sec } from "./timeline";
 import {
   COLORS,
   FONT_FAMILY_HEADLINE,
@@ -9,6 +8,15 @@ import {
 } from "./theme";
 
 const ENTRANCE_S = 0.16; // 120-200ms del spec
+
+export type Caption = {
+  from: number;
+  to: number;
+  lines: string[];
+  emphasis?: string[];
+};
+
+export type AccentStinger = { from: number; to: number; text: string };
 
 const Word: React.FC<{ text: string; highlighted: boolean }> = ({
   text,
@@ -39,22 +47,21 @@ const renderLine = (line: string, emphasis: string[] | undefined) => {
   });
 };
 
-export const Captions: React.FC = () => {
+export const Captions: React.FC<{
+  captions: Caption[];
+  accentStingers?: AccentStinger[];
+}> = ({ captions, accentStingers = [] }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
 
-  const active = CAPTIONS.find((c) => t >= c.from && t < c.to);
-  const accent = ACCENT_STINGERS.find((a) => t >= a.from && t < a.to);
+  const active = captions.find((c) => t >= c.from && t < c.to);
+  const accent = accentStingers.find((a) => t >= a.from && t < a.to);
 
   return (
     <AbsoluteFill>
       {active ? (
-        <CaptionBlock
-          key={`${active.from}`}
-          caption={active}
-          startFrame={sec(active.from)}
-        />
+        <CaptionBlock key={`${active.from}`} caption={active} />
       ) : null}
       {accent ? (
         <AbsoluteFill
@@ -73,7 +80,12 @@ export const Captions: React.FC = () => {
               letterSpacing: 1,
               opacity: interpolate(
                 frame,
-                [sec(accent.from), sec(accent.from) + 4, sec(accent.to) - 4, sec(accent.to)],
+                [
+                  Math.round(accent.from * fps),
+                  Math.round(accent.from * fps) + 4,
+                  Math.round(accent.to * fps) - 4,
+                  Math.round(accent.to * fps),
+                ],
                 [0, 1, 1, 0],
               ),
             }}
@@ -86,10 +98,7 @@ export const Captions: React.FC = () => {
   );
 };
 
-const CaptionBlock: React.FC<{
-  caption: (typeof CAPTIONS)[number];
-  startFrame: number;
-}> = ({ caption }) => {
+const CaptionBlock: React.FC<{ caption: Caption }> = ({ caption }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;

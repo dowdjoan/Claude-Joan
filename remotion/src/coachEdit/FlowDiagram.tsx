@@ -1,8 +1,8 @@
 import React from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { FLOW_GRAPHIC } from "./timeline";
-import { COLORS, FONT_FAMILY_UI, gradientText, GRADIENT_VIOLET_BLUE } from "./theme";
-import { RevealBox } from "./RevealBox";
+import { COLORS, FONT_FAMILY_UI, gradientText, GRADIENT_VIOLET_BLUE } from "../shared/theme";
+import { RevealBox } from "../shared/RevealBox";
 
 const NODE_VOS_AT = 0;
 const NODE_IA_AT = 2.81;

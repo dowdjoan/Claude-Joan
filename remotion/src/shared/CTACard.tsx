@@ -6,8 +6,8 @@ import {
   FONT_FAMILY_UI,
   GRADIENT_MAGENTA_VIOLET_BLUE,
   gradientText,
-} from "./theme";
-import { RevealBox } from "./RevealBox";
+} from "../shared/theme";
+import { RevealBox } from "../shared/RevealBox";
 
 const ArrowDown: React.FC<{ bounce: number }> = ({ bounce }) => (
   <svg

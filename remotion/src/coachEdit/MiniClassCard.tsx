@@ -7,8 +7,8 @@ import {
   FONT_FAMILY_UI,
   GRADIENT_VIOLET_BLUE,
   gradientText,
-} from "./theme";
-import { RevealBox } from "./RevealBox";
+} from "../shared/theme";
+import { RevealBox } from "../shared/RevealBox";
 
 const PlayButton: React.FC = () => (
   <div

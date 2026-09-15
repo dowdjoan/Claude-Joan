@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   AbsoluteFill,
   OffthreadVideo,
@@ -7,16 +7,26 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { FPS, SOURCE_VIDEO, SPEECH_SEGMENTS } from "./timeline";
-import { getCameraTransform } from "./camera";
+import { CameraKeyframe, makeCameraTransformGetter } from "./camera";
+
+export type SpeechSegment = { sourceStart: number; sourceEnd: number };
 
 // El speaker "protagonista": concatena los tramos de habla (jump cuts, sin
 // pausas) de un único archivo fuente, con un punch-in/reencuadre continuo
-// manejado por camera.ts que no se corta en los saltos de plano.
-export const SpeakerReel: React.FC = () => {
+// que no se corta en los saltos de plano.
+export const SpeakerReel: React.FC<{
+  source: string;
+  segments: SpeechSegment[];
+  cameraKeyframes: CameraKeyframe[];
+  fps: number;
+}> = ({ source, segments, cameraKeyframes, fps }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const timeSec = frame / fps;
+  const { fps: compFps } = useVideoConfig();
+  const timeSec = frame / compFps;
+  const getCameraTransform = useMemo(
+    () => makeCameraTransformGetter(cameraKeyframes),
+    [cameraKeyframes],
+  );
   const { scale, shiftX } = getCameraTransform(timeSec);
 
   let cursor = 0;
@@ -27,17 +37,17 @@ export const SpeakerReel: React.FC = () => {
         transformOrigin: "50% 45%",
       }}
     >
-      {SPEECH_SEGMENTS.map((seg, i) => {
+      {segments.map((seg, i) => {
         const durationInFrames = Math.round(
-          (seg.sourceEnd - seg.sourceStart) * FPS,
+          (seg.sourceEnd - seg.sourceStart) * fps,
         );
         const from = cursor;
         cursor += durationInFrames;
         return (
           <Sequence key={i} from={from} durationInFrames={durationInFrames}>
             <OffthreadVideo
-              src={staticFile(SOURCE_VIDEO)}
-              startFrom={Math.round(seg.sourceStart * FPS)}
+              src={staticFile(source)}
+              startFrom={Math.round(seg.sourceStart * fps)}
               muted={false}
               style={{
                 width: "100%",

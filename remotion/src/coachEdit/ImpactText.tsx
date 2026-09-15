@@ -1,8 +1,8 @@
 import React from "react";
 import { AbsoluteFill } from "remotion";
 import { IMPACT_TEXT_HICE, IMPACT_TEXT_VOS_PODES } from "./timeline";
-import { COLORS, FONT_FAMILY_HEADLINE, GRADIENT_VIOLET_BLUE, gradientText } from "./theme";
-import { RevealBox } from "./RevealBox";
+import { COLORS, FONT_FAMILY_HEADLINE, GRADIENT_VIOLET_BLUE, gradientText } from "../shared/theme";
+import { RevealBox } from "../shared/RevealBox";
 
 const BigTwoLiner: React.FC<{
   from: number;
