@@ -19,7 +19,11 @@ export const SpeakerReel: React.FC<{
   segments: SpeechSegment[];
   cameraKeyframes: CameraKeyframe[];
   fps: number;
-}> = ({ source, segments, cameraKeyframes, fps }) => {
+  // Para fuentes horizontales recortadas a un frame vertical (ej. una
+  // videollamada partida en paneles): dónde centrar el recorte de
+  // `object-fit: cover`. Default centrado, como una fuente vertical nativa.
+  objectPosition?: string;
+}> = ({ source, segments, cameraKeyframes, fps, objectPosition = "50% 50%" }) => {
   const frame = useCurrentFrame();
   const { fps: compFps } = useVideoConfig();
   const timeSec = frame / compFps;
@@ -53,6 +57,7 @@ export const SpeakerReel: React.FC<{
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
+                objectPosition,
               }}
             />
           </Sequence>
