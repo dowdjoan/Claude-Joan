@@ -22,6 +22,7 @@ import { Captions } from "../shared/Captions";
 import { Flashes } from "../shared/Flashes";
 import { SfxTrack } from "../shared/SfxTrack";
 import { CTACard } from "../shared/CTACard";
+import { IntroProfileCard } from "./IntroProfileCard";
 import { TransformationCard } from "./TransformationCard";
 import { FunnelGraphic } from "./FunnelGraphic";
 import { QuestionCard } from "./QuestionCard";
@@ -64,6 +65,7 @@ export const JoanP2PEdit: React.FC = () => (
       cameraKeyframes={CAMERA_KEYFRAMES}
       fps={FPS}
     />
+    <IntroProfileCard />
     <TransformationCard />
     <FunnelGraphic />
     <QuestionCard />

@@ -80,6 +80,7 @@ export const ACCENT_STINGERS: AccentStinger[] = [];
 // ---------------------------------------------------------------------------
 // Placas / motion graphics full-screen
 // ---------------------------------------------------------------------------
+export const INTRO_PROFILE_CARD = { from: 0.0, to: 1.83 };
 export const TRANSFORMATION_CARD = { from: 1.83, to: 6.76 };
 export const FUNNEL_GRAPHIC = { from: 7.38, to: 9.74 };
 export const QUESTION_CARD = { from: 9.74, to: 16.87 };
