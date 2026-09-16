@@ -24,7 +24,7 @@ export const StatBadges: React.FC = () => {
   });
 
   return (
-    <AbsoluteFill style={{ justifyContent: "flex-start", alignItems: "center", paddingTop: "8%" }}>
+    <AbsoluteFill style={{ justifyContent: "flex-start", alignItems: "center", paddingTop: "10%" }}>
       <div
         style={{
           opacity,

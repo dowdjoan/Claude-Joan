@@ -21,6 +21,7 @@ import { Captions } from "../shared/Captions";
 import { Flashes } from "../shared/Flashes";
 import { SfxTrack } from "../shared/SfxTrack";
 import { StatBadges } from "./StatBadges";
+import { TopCtaBanner } from "./TopCtaBanner";
 
 type Props = {};
 
@@ -59,6 +60,7 @@ export const FeliTestimonialEdit: React.FC = () => (
       objectPosition={OBJECT_POSITION}
     />
     <StatBadges />
+    <TopCtaBanner />
     <Captions captions={CAPTIONS} accentStingers={ACCENT_STINGERS} />
     <Flashes whiteFlashes={WHITE_FLASHES} violetFlashes={VIOLET_FLASHES} />
     <SfxTrack cues={SFX_CUES} />
