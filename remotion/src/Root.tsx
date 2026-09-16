@@ -5,6 +5,7 @@ import { CoachFitnessEditComposition } from "./coachEdit/CoachFitnessEdit";
 import { JoanP2PEditComposition } from "./joanEdit/JoanP2PEdit";
 import { DylanTestimonialEditComposition } from "./dylanEdit/DylanTestimonialEdit";
 import { DylanShortEditComposition } from "./dylanShortEdit/DylanShortEdit";
+import { FeliEditComposition } from "./feliEdit/FeliEdit";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ export const RemotionRoot: React.FC = () => {
       <JoanP2PEditComposition />
       <DylanTestimonialEditComposition />
       <DylanShortEditComposition />
+      <FeliEditComposition />
     </>
   );
 };
