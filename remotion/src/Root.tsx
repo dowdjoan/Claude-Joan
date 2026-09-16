@@ -7,6 +7,7 @@ import { DylanTestimonialEditComposition } from "./dylanEdit/DylanTestimonialEdi
 import { DylanShortEditComposition } from "./dylanShortEdit/DylanShortEdit";
 import { FeliEditComposition } from "./feliEdit/FeliEdit";
 import { FeliTestimonialEditComposition } from "./feliTestimonialEdit/FeliTestimonialEdit";
+import { EmmaEditComposition } from "./emmaEdit/EmmaEdit";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ export const RemotionRoot: React.FC = () => {
       <DylanShortEditComposition />
       <FeliEditComposition />
       <FeliTestimonialEditComposition />
+      <EmmaEditComposition />
     </>
   );
 };
