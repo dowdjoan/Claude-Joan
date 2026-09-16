@@ -70,11 +70,11 @@ export const CTA_FINAL = { from: 33.824, to: TOTAL_DURATION };
 // ---------------------------------------------------------------------------
 export const CAPTIONS: Caption[] = [
   // HOOK_EMMA (badge propio se encarga de "DE UNA BARBERÍA")
-  { from: 0, to: 0.95, lines: ["EMMA"], emphasis: ["EMMA"] },
+  { from: 0, to: 0.95, lines: ["EMA"], emphasis: ["EMA"] },
   { from: 0.95, to: 2.05, lines: ["COMMUNITY", "MANAGER"] },
   // 2.742-6.399: FREELANCER_500 full screen
   // 6.399-12.798: HERO_TRANSFORM full screen
-  { from: 12.798, to: 14.5, lines: ["¿QUÉ HIZO", "EMMA?"], emphasis: ["EMMA?"] },
+  { from: 12.798, to: 14.5, lines: ["¿QUÉ HIZO", "EMA?"], emphasis: ["EMA?"] },
   { from: 14.5, to: 16.5, lines: ["QUE VOS NO", "ESTÁS VIENDO"] },
   { from: 16.5, to: 17.369, lines: ["COMO FREELANCER"] },
   // 17.369-21.026: P2P_REVEAL full screen
