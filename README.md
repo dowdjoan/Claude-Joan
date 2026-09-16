@@ -58,6 +58,34 @@ npx remotion render AutoEdit out/final.mp4
 ./scripts/render.sh
 ```
 
+## Edit "a mano" con Remotion (composición `CoachFitnessAd`)
+
+Además del pipeline automático de arriba, `remotion/src/coachEdit/` tiene un
+edit vertical (9:16, vale para cualquier ad de este estilo) armado a mano
+componente por componente: jump cuts sin pausas muertas (a partir de
+`ffmpeg silencedetect` sobre el audio real, no estimado), subtítulos cortos
+animados (blur + scale-in + click sincronizado), placas de impacto
+full-screen, motion graphics (flujo VOS→IA→CLIENTE, niveles de precio,
+"boca a boca", CTA P2P, tarjeta de mini clase) y flashes/destellos en los
+cortes de sección. Todo el timing vive en `remotion/src/coachEdit/timeline.ts`,
+con un comentario al principio explicando cómo se calculó.
+
+Para reproducirlo:
+
+```bash
+# 1) Poné tu video en remotion/public/footage/ y ajustá SOURCE_VIDEO en
+#    remotion/src/coachEdit/timeline.ts (y los cortes/tiempos si es un video
+#    distinto al que se usó para armar este edit)
+
+# 2) Generá los efectos de sonido (no se commitean como binarios)
+./scripts/generate_sfx.sh
+
+# 3) Preview / render
+cd remotion && npm install
+npx remotion studio      # preview interactivo, composición "CoachFitnessAd"
+npx remotion render CoachFitnessAd out/final.mp4
+```
+
 ## Requisitos
 
 - `ffmpeg` / `ffprobe` (detección de cortes y metadata)
